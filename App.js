@@ -10,15 +10,17 @@ import {
 
 const App = (props) => {
 	return (
-    <ImageBackground 
-      source={require('./assets/images/pond.png')} 
-      style={{ height:'100%', width:'100%' }} >
-    
-      <View style={styles.container}>
-				<Image style={{ height:'100px', width:'100px'}} source={require('./assets/images/fish.jpg')}  /> 
-		  </View>
-		
-    </ImageBackground>
+		<ImageBackground
+			source={require('./assets/images/pond.png')}
+			style={{ height: '100%', width: '100%' }}
+		>
+			<View style={styles.container}>
+				<Image
+					style={{ height: 50, width: 80,  }}
+					source={require('./assets/images/Fish.png')}
+				/>
+			</View>
+		</ImageBackground>
 	);
 };
 
