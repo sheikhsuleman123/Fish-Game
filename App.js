@@ -16,6 +16,23 @@ const App = (props) => {
 		right: 0
 	});
 
+	setTimeout(() => {
+		setPosition((prevState) => ({
+			top: Math.floor(
+				Math.random() * (Dimensions.get('screen').height - 100)
+			),
+			left: Math.floor(
+				Math.random() * (Dimensions.get('screen').width - 100)
+			),
+			right: Math.floor(
+				Math.random() * (Dimensions.get('screen').width - 100)
+			),
+			bottom: Math.floor(
+				Math.random() * (Dimensions.get('screen').height - 100)
+			)
+		}));
+	}, 1000);
+
 	return (
 		<ImageBackground
 			source={require('./assets/images/pond.png')}
@@ -30,7 +47,7 @@ const App = (props) => {
 						top: position.top,
 						right: position.right,
 						left: position.left,
-						bottom: position.bottom,
+						bottom: position.bottom
 					}}
 					source={require('./assets/images/Fish.png')}
 				/>
