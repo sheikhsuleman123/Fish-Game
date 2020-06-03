@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -13,6 +13,7 @@ import {
 
 const App = (props) => {
 
+	let movements = null;
 	let TouchAble = null;
 	let [ score, setScore ] = useState(0);
 	let [ position, setPosition ] = useState({
@@ -22,7 +23,13 @@ const App = (props) => {
 		right: 0
 	});
 
-	const movements = setTimeout(() => {
+	useEffect( () => {
+		moveFish();
+	}, [position])
+
+	function moveFish() {
+		clearTimeout(movements);
+	movements = setTimeout(() => {
 		setPosition((prevState) => ({
 			top: Math.floor(
 				Math.random() * (Dimensions.get('screen').height - 100)
@@ -37,15 +44,13 @@ const App = (props) => {
 				Math.random() * (Dimensions.get('screen').height - 100)
 			)
 		}));
-	}, 1000);
-
+	 }, 1000);
+	}
 	if( Platform.OS == 'ios'){
 		 TouchAble =	<TouchableOpacity
 				onPress={() => {
-					clearTimeout(movements);
 					setScore(score + 1);
-				}}
-			>
+				}}>
 				<Image
 					style={{
 						height: 50,
@@ -59,10 +64,9 @@ const App = (props) => {
 					source={require('./assets/images/Fish.png')}
 				/>
 			</TouchableOpacity>
-	}else{
+	} else {
 		 TouchAble =	<TouchableNativeFeedback
 				onPress={() => {
-					clearTimeout(movements);
 					setScore(score + 1);
 				}}
 			>
